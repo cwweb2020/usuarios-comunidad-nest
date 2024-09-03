@@ -3,14 +3,16 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   ParseUUIDPipe,
+  Put,
 } from '@nestjs/common';
 import { CryptocurrencyService } from './cryptocurrency.service';
 import { CreateCryptocurrencyDto } from './dto/create-cryptocurrency.dto';
 import { UpdateCryptocurrencyDto } from './dto/update-cryptocurrency.dto';
+import { BuyMoreDto } from './dto/BuyMore.dto';
+import { Cryptocurrency } from './entities/cryptocurrency.entity';
 
 @Controller('crypto')
 export class CryptocurrencyController {
@@ -31,22 +33,24 @@ export class CryptocurrencyController {
     return this.cryptocurrencyService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() updateCryptocurrencyDto: UpdateCryptocurrencyDto,
   ) {
-    return this.cryptocurrencyService.update(+id, updateCryptocurrencyDto);
+    return this.cryptocurrencyService.update(id, updateCryptocurrencyDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.cryptocurrencyService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.cryptocurrencyService.remove(id);
   }
 
-  //comprar mas criptomonedas
-  // @Post('/buy-more')
-  // async buyMore(@Body() buyMoreDto: BuyMoreDto): Promise<Cryptocurrency> {
-  //   return await this.cryptocurrencyService.updateQuantity(buyMoreDto.ticker, buyMoreDto.amount);
-  // }
+  @Post('buy-more')
+  async buyMore(@Body() buyMoreDto: BuyMoreDto): Promise<Cryptocurrency> {
+    return await this.cryptocurrencyService.updateQuantity(
+      buyMoreDto.ticker,
+      buyMoreDto.amount,
+    );
+  }
 }
