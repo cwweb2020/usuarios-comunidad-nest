@@ -2,7 +2,7 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-## Description Users api
+## Description Crypto api
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
@@ -23,17 +23,20 @@ levantar base de datos
 $ docker-compose up -d
 ```
 
-## Running the app
+## Correr la app
 
 ```bash
 # watch mode
 $ yarn run start:dev
 ```
 
-## Create a cryptocurrency
+## Crear/agregar una criptomoneda
 
 ```bash
-Example
+run endpoint
+Post : http://localhost:3000/api/crypto
+
+Ejemplo
 {
   "nombre": "Ethereum",
   "ticker": "ETH",

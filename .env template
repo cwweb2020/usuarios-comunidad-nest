@@ -3,3 +3,6 @@ DB_NAME=users                          # Nombre de la base de datos para el proy
 DB_USER=users                          # Usuario de la base de datos para el proyecto "users"
 DB_HOST=localhost
 DB_PORT=5433                          
+
+
+JWT_SECRET=secret
