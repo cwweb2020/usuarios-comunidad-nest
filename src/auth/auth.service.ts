@@ -71,6 +71,7 @@ export class AuthService {
     //* Todo retornar jwt
   }
 
+  //TODO get jwt token
   private getJWTtoken(payload: JwtPayload) {
     const token = this.jwtService.sign(payload);
     return token;

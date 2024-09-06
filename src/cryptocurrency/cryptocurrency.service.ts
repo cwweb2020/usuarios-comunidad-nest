@@ -24,12 +24,11 @@ export class CryptocurrencyService {
       const newCrypto = this.cryptocurrencyRepository.create(
         createCryptocurrencyDto,
       );
-      await this.cryptocurrencyRepository.save(newCrypto);
+      const savedCrypto = await this.cryptocurrencyRepository.save(newCrypto);
+      return savedCrypto;
     } catch (error) {
       throw new BadRequestException(error.message);
     }
-
-    return createCryptocurrencyDto;
   }
 
   // TODO get all cryptos

@@ -22,12 +22,4 @@ export class CreateUserDto {
   @IsNotEmpty()
   @MinLength(1)
   name: string;
-
-  //   @IsBoolean()
-  //   isActive: boolean;
-
-  //   @IsArray()
-  //   @ArrayNotEmpty()
-  //   @IsString({ each: true })
-  //   roles: string[];
 }

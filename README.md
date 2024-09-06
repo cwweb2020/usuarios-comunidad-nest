@@ -46,3 +46,51 @@ Ejemplo
 
 
 ```
+
+## Comprar una criptomoneda
+
+```bash
+run endpoint
+Post :http://localhost:3000/api/crypto/buy-more/
+
+Ejemplo
+{
+  "ticker": "ETH",
+  "amount": 3
+}
+
+
+```
+
+````
+
+## Login Usuario
+
+```bash
+run endpoint
+Post :http://localhost:3000/api/auth/login
+
+Ejemplo
+{
+    "email": "donaldd@example.com",
+    "password": "securePassword123"
+}
+
+
+````
+
+## Registrar Usuario
+
+```bash
+run endpoint
+Post :http://localhost:3000/api/auth/register
+
+Ejemplo
+{
+  "email": "rick@example.com",
+  "password": "securePassword123",
+  "name": "Rick Mendez"
+}
+
+
+```
