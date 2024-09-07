@@ -31,7 +31,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     if (!user || !user.isActive)
       throw new UnauthorizedException(`Invalid credentials ${email}`);
 
-    console.log('user', { user });
+    //  console.log('user', { user });
 
     return user;
   }
