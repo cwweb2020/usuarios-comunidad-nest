@@ -6,6 +6,7 @@ import {
   Get,
   UseGuards,
   SetMetadata,
+  Param,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto, LoginUserDto } from './dto';
@@ -15,6 +16,8 @@ import { User } from './entities/user.entity';
 import { RawHeaders } from './decorators/raw-headers.decorators';
 import { UserRoleGuard } from './guards/user-role.guard';
 import { Auth } from './decorators/auth.decorator';
+import { UserWithoutPassword } from './interfaces/user-no-password.interface';
+import { Profession } from './entities';
 
 @Controller('auth')
 export class AuthController {
@@ -33,25 +36,21 @@ export class AuthController {
     return this.authService.createLogin(loginUserDto);
   }
 
-  //* ruta de prueba
+  //* Endpoint para obtener usuarios por profesión
+  @Get('profession/:professionName')
+  findUsersByProfession(
+    @Param('professionName') professionName: string,
+  ): Promise<UserWithoutPassword[]> {
+    return this.authService.findUsersByProfession(professionName);
+  }
 
-  // @Get('private')
-  // @UseGuards(AuthGuard())
-  // testingPrivateRoute(
-  //   @GetUser('email') userEmail: string,
-  //   @RawHeaders() headers: string,
-  // ) {
-  //   return { userEmail, headers };
-  // }
+  //TODO  list of professions
+  @Get('professions')
+  findAllProfessions(): Promise<Profession[]> {
+    return this.authService.findAllProfessions();
+  }
 
-  // @Get('private2')
-  // @SetMetadata('roles', ['admin'])
-  // @UseGuards(AuthGuard(), UserRoleGuard)
-  // privateRoute2(@GetUser() user: User) {
-  //   return {
-  //     message: 'Tiene acceso',
-  //   };
-  // }
+  // ruta de prueba
 
   // @Get('private3')
   // @Auth()
