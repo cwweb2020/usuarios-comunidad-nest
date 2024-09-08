@@ -4,6 +4,7 @@
 /build
 
 postgres/
+users_data/
 
 .env
 
