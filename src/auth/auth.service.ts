@@ -152,7 +152,19 @@ export class AuthService {
 
   //TODO list of professions
   async findAllProfessions(): Promise<Profession[]> {
-    return this.professionRepository.find();
+    return this.professionRepository.find({
+      order: {
+        professionName: 'ASC',
+      },
+    });
+  }
+
+  //TODO list of users
+  async findAllUsers(): Promise<UserWithoutPassword[]> {
+    const user = await this.userRepository.find();
+    return user.map(
+      ({ password, ...userWithoutPassword }) => userWithoutPassword,
+    );
   }
 
   //TODO get jwt token

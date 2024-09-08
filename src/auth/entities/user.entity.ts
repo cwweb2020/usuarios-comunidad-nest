@@ -9,42 +9,55 @@ import {
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Profession } from './profession.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('users')
 export class User {
+  @ApiProperty()
   @PrimaryGeneratedColumn('uuid') // Usar UUID como ID
   id: string;
 
+  @ApiProperty()
   @Column({ type: 'varchar' })
   firstName: string; // Nombre
 
+  @ApiProperty()
   @Column({ type: 'varchar' })
   lastName: string; // Apellido
 
+  @ApiProperty()
   @Column({ type: 'varchar', unique: true })
   email: string;
 
+  // @ApiProperty()
   @Column({ type: 'varchar' })
   password: string;
 
+  @ApiProperty()
   @Column({ type: 'int' })
   age: number; // Edad
 
+  @ApiProperty()
   @Column('text', { array: true }) // Array de idiomas
   languages: string[]; // Idiomas
 
+  @ApiProperty()
   @Column()
   phone: string; // Teléfono
 
+  @ApiProperty()
   @Column({ type: 'boolean', default: false })
   isActive: boolean;
 
+  @ApiProperty()
   @Column({ type: 'text' })
   location: string; // Ubicación
 
+  @ApiProperty()
   @Column({ type: 'int' })
   credentialNum: number;
 
+  @ApiProperty()
   @Column('text', { array: true, default: ['user'] })
   roles: string[];
 

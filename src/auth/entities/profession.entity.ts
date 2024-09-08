@@ -7,12 +7,15 @@ import {
   BeforeUpdate,
 } from 'typeorm';
 import { User } from './user.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('professions')
 export class Profession {
+  @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @ApiProperty()
   @Column({ type: 'varchar', unique: true })
   professionName: string;
 
