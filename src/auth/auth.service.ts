@@ -173,6 +173,7 @@ export class AuthService {
     return token;
   }
 
+  //TODO handle errors function
   private readonly handleErrors = (error: any): never => {
     if (error.code === '23505') {
       throw new BadRequestException(error.detail);

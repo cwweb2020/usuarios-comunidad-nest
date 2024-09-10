@@ -28,10 +28,14 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
     const user = await this.userRepository.findOneBy({ email });
 
-    if (!user || !user.isActive)
-      throw new UnauthorizedException(`Invalid credentials ${email}`);
+    // Verificar si el usuario fue encontrado o no
 
-    //  console.log('user', { user });
+    if (!user) throw new UnauthorizedException(`Invalid credentials ${email}`);
+
+    // Verificar si el usuario está activo
+    if (!user.isActive) {
+      throw new UnauthorizedException(`debe ser administrador`);
+    }
 
     return user;
   }

@@ -1,5 +1,5 @@
 POSTGRES_PASSWORD=users_password1234  # Nueva contraseña para el proyecto "users"
-DB_NAME=users                          # Nombre de la base de datos para el proyecto "users"
+DB_NAME=community_users_db                          # Nombre de la base de datos para el proyecto "users"
 DB_USER=users                          # Usuario de la base de datos para el proyecto "users"
 DB_HOST=localhost
 DB_PORT=5433                          

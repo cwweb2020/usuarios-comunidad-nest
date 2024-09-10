@@ -72,11 +72,11 @@ export class AuthController {
 
   // ruta de prueba
 
-  // @Get('private3')
-  // @Auth()
-  // privateRoute3(@GetUser() user: User) {
-  //   return {
-  //     message: 'Tiene acceso',
-  //   };
-  // }
+  @Get('private')
+  @Auth()
+  privateRoute3(@GetUser() user: User) {
+    return {
+      message: 'Tiene acceso',
+    };
+  }
 }
