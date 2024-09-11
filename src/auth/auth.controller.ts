@@ -70,6 +70,24 @@ export class AuthController {
     return this.authService.findAllProfessions();
   }
 
+  //TODO  list professions and locations
+  @ApiTags('Profession')
+  @Get('profession/:professionName/location/:location')
+  @ApiOperation({
+    summary: 'Obtener usuarios por profesión y ubicación',
+    description:
+      'Este endpoint devuelve todos los usuarios que están asociados a una profesión en particular y están en una localidad específica.',
+  })
+  findUsersByProfessionAndLocation(
+    @Param('professionName') professionName: string,
+    @Param('location') location: string,
+  ): Promise<UserWithoutPassword[]> {
+    return this.authService.findUsersByProfessionAndLocation(
+      professionName,
+      location,
+    );
+  }
+
   // ruta de prueba
 
   @Get('private')

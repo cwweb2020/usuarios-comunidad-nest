@@ -173,6 +173,38 @@ export class AuthService {
     return token;
   }
 
+  //TODO find users by profession and location
+  async findUsersByProfessionAndLocation(
+    professionName: string,
+    location: string,
+  ): Promise<UserWithoutPassword[]> {
+    professionName = professionName.toLowerCase();
+    location = location.toLowerCase();
+
+    const profession = await this.professionRepository.findOne({
+      where: { professionName },
+      relations: ['users'],
+    });
+
+    if (!profession) {
+      throw new NotFoundException(`Profession "${professionName}" not found`);
+    }
+
+    const usersInLocation = profession.users.filter(
+      (user) => user.location === location.toLowerCase(),
+    );
+
+    //exclude password
+    const usersWithoutPassword: UserWithoutPassword[] = usersInLocation.map(
+      (user) => {
+        const { password, ...userWithoutPassword } = user; // Excluir la contraseña
+        return userWithoutPassword;
+      },
+    );
+
+    return usersWithoutPassword;
+  }
+
   //TODO handle errors function
   private readonly handleErrors = (error: any): never => {
     if (error.code === '23505') {

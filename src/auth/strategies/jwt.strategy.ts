@@ -34,7 +34,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
     // Verificar si el usuario está activo
     if (!user.isActive) {
-      throw new UnauthorizedException(`debe ser administrador`);
+      throw new UnauthorizedException(
+        `Cuenta desactivada contacte al administrador`,
+      );
     }
 
     return user;
