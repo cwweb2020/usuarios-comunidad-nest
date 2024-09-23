@@ -92,9 +92,9 @@ export class AuthController {
 
   @Get('private')
   @Auth()
-  privateRoute3(@GetUser() user: User) {
+  privateRoute(@GetUser() user: User) {
     return {
-      message: 'Tiene acceso',
+      message: `Usuario ${user.firstName} Tiene acceso`,
     };
   }
 }

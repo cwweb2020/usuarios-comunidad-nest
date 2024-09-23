@@ -15,6 +15,7 @@ export const GetUser = createParamDecorator(
     }
 
     if (data === 'email') return user.email;
+
     return user;
   },
 );
