@@ -7,6 +7,9 @@ WORKDIR /usr/src/app
 # Copia los archivos de package.json y yarn.lock para instalar dependencias
 COPY package.json yarn.lock ./
 
+# Verificar los archivos copiados
+RUN cat package.json
+
 # Instala las dependencias de la aplicación
 RUN yarn install --frozen-lockfile
 
@@ -19,5 +22,9 @@ RUN yarn build
 # Expone el puerto que la aplicación usa
 EXPOSE 3000
 
+# Asegurarte de que siempre use el último archivo
+RUN ls -la
+
 # Comando para ejecutar la aplicación
 CMD ["yarn", "start:prod"]
+

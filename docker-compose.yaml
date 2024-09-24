@@ -1,10 +1,10 @@
-version: '3'
+version: '3.8'
 services:
   db:
     image: postgres:14.3
     restart: always
     ports:
-      - '5433:5432' # Cambia el puerto externo para evitar conflictos con "teslo2.0"
+      - '5434:5432' # Cambia el puerto externo para evitar conflictos con "teslo2.0"
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -12,3 +12,12 @@ services:
     container_name: ${DB_NAME}_db
     volumes:
       - ./users_data:/var/lib/postgresql/data
+
+  hayamet-app:
+    image: bmxfox16/hayamet:1.0 # Imagen de tu aplicación NestJS ya construida
+    ports:
+      - '3000:3000' # Expone el puerto 3000
+    depends_on:
+      - db # Asegura que la base de datos PostgreSQL esté lista antes de iniciar la app
+    environment:
+      DATABASE_URL: postgres://${DB_USER}:${POSTGRES_PASSWORD}@db:5432/${DB_NAME} # Conexión a la base de datos PostgreSQL

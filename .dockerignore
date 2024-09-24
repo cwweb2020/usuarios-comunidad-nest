@@ -4,8 +4,7 @@ npm-debug.log
 yarn-debug.log
 yarn-error.log
 
-# Ignorar la carpeta de salida de TypeScript
-dist
+
 
 # Ignorar archivos de configuración y ambiente local
 .env
